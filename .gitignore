@@ -373,3 +373,5 @@ CurrencyConverter*.zip
 
 # Build zips
 *.zip
+
+.vscode/
