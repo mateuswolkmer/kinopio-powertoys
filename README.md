@@ -4,6 +4,8 @@ PowerToys Run plugin to save cards to your Kinopio inbox - without losing contex
 
 ![alt text](./images/image-2.png)
 
+Inspired by [kinopio-raycast](https://github.com/kinopio-club/kinopio-raycast).
+
 ## Usage
 Send anything you want, right to your inbox:
 - Task — `kin [] Water plants before it's too late`
