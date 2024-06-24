@@ -370,3 +370,6 @@ CurrencyConverter*.zip
 # Include dependecies
 !*/Libs/x64
 !*/Libs/ARM64
+
+# Build zips
+*.zip

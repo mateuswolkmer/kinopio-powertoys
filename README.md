@@ -2,13 +2,13 @@
 
 PowerToys Run plugin to save cards to your Kinopio inbox - without losing context.
 
-![alt text](image-2.png)
+![alt text](./images/image-2.png)
 
 ## Usage
-
-```
-kin "Lean into the things that make you like yourself."
-```
+Send anything you want, right to your inbox:
+- Task — `kin [] Water plants before it's too late`
+- Quote — `kin "Lean into the things that make you like yourself."`
+- Link — `kin https://www.youtube.com/watch?v=8ho8FoV3Ee0`
 
 ### API key
 
@@ -28,10 +28,16 @@ The default action key to activate the plugin is `kin`, but you can change it to
 
 You can also enable "Include in global result", which will remove the action key requirement.
 
-![alt text](image-1.png)
+![alt text](./images/image-1.png)
 
 ## Installation
 
 1. Download the latest release of Kinopio plugin from the [releases page](https://github.com/mateuswolkmer/kinopio-powertoys/releases);
-2. Extract the zip file's contents to your PowerToys modules directory (usually %LOCALAPPDATA%\Microsoft\PowerToys\PowerToys Run\Plugins);
+2. Extract the zip file's contents to your PowerToys modules directory (usually `%LOCALAPPDATA%\Microsoft\PowerToys\PowerToys Run\Plugins`);
 3. Restart PowerToys.
+
+## Development
+After making your changes, run `.\Build.ps1` and extract the generated zip correspondant to your platform (ARM or x64) to your PowerToys modules directory, following step 2 from [Installation](#installation).
+
+## Issues
+If you encounter any issue, please raise it in the [issues page](https://github.com/mateuswolkmer/kinopio-powertoys/issues) or tag `@mawo` in the [Kinopio Discord community](https://discord.com/invite/h2sR45Nby8).

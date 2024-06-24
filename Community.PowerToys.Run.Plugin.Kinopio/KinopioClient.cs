@@ -23,11 +23,16 @@ namespace Kinopio
 
         public async void SetAuthToken(string kinopioAuthToken)
         {
+            _client.DefaultRequestHeaders.Remove("Authorization");
+            _client.DefaultRequestHeaders.Add("Authorization", kinopioAuthToken);
+            
             if (!string.IsNullOrEmpty(kinopioAuthToken))
             {
-                _client.DefaultRequestHeaders.Remove("Authorization");
-                _client.DefaultRequestHeaders.Add("Authorization", kinopioAuthToken);
                 await GetUsername();
+            }
+            else 
+            {
+                username = string.Empty;
             }
         }
 
@@ -41,17 +46,15 @@ namespace Kinopio
                     var responseContent = await response.Content.ReadAsStringAsync();
                     var user = JsonSerializer.Deserialize<JsonElement>(responseContent);
                     username = user.GetProperty("name").GetString();
-
-                    Log.Info($"🐸 USERNAME GOTTEN: {username}", GetType());
                 }
                 else
                 {
-                    Log.Error($"🐸 USERNAME ERROR: {await response.Content.ReadAsStringAsync()}", GetType());
+                    Log.Error($"🐸 GetUsername error: {await response.Content.ReadAsStringAsync()}", GetType());
                 }
             }
             catch (Exception ex)
             {
-                Log.Error($"🐸 USERNAME EXCEPTION: {ex.Message}", GetType());
+                Log.Error($"🐸 GetUsername exception: {ex.Message}", GetType());
             }
         }
 
@@ -65,19 +68,21 @@ namespace Kinopio
                 var response = await _client.PostAsync($"{HostName}/card/to-inbox", serializedContent);
                 if (response.IsSuccessStatusCode)
                 {
-                    Log.Info($"🐸 SUCCESS RESPONSE: {await response.Content.ReadAsStringAsync()}", GetType());
+                    // Log.Info($"🐸 SaveToInbox success: {await response.Content.ReadAsStringAsync()}", GetType());
+                    return true;
                 }
                 else
                 {
-                    Log.Error($"🐸 ERROR RESPONSE: {await response.Content.ReadAsStringAsync()}", GetType());
+                    // TODO find way to inform user of error
+                    Log.Error($"🐸 SaveToInbox error: {await response.Content.ReadAsStringAsync()}", GetType());
+                    return false;
                 }
             }
             catch (Exception ex)
             {
-                Log.Error($"🐸 EXCEPTION: {ex.Message}", GetType());
+                Log.Error($"🐸 SaveToInbox exception: {ex.Message}", GetType());
+                return false;
             }
-
-            return true;
         }
     }
 }
